@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="max-age=7200" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="css/detail.css" />
+    <link rel="stylesheet" href="lib/layer/layer.css">
+    <link rel="stylesheet" href="lib/swiper/swiper.min.css">
+    <link rel="stylesheet" href="lib/layui/css/layui.mobile.css">
+    <script src="lib/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/rem/rem.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/swiper/swiper.min.js"></script>
+    <script src="lib/layer/layer.js"></script>
+    <script src="lib/layui/layui.js"></script>
+    <script src="lib/layui/layui.all.js"></script>
+    <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+    <title></title>
+</head>
+
+<body>
+    <!--头部-->
+    <header>
+        <i class="iconfont">&#xe602;</i>
+        <p class="title">
+            商品详情
+        </p>
+    </header>
+    <!--商品详情-->
+    <div id="main-wrapper">
+        <div class="main">
+            <!--商品轮播图-->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="img/goods1.jpg" alt='橄榄多酚蓝莓胶原蛋白肽'>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/goods2.jpg" alt='橄榄多酚蓝莓胶原蛋白肽'>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/goods3.jpg" alt='橄榄多酚蓝莓胶原蛋白肽'>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/goods4.jpg" alt='橄榄多酚蓝莓胶原蛋白肽'>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <!--商品价格-->
+            <div class="goods-price">
+                <div class="price-info">
+                    <span class="dollar">￥</span>
+                    <span class="price">1288</span>
+                    <span class="unit">/盒</span>
+                    <span class="discount">多件八折</span>
+                </div>
+                <div class="express">
+                    顺丰包邮
+                </div>
+            </div>
+            <!--商品介绍-->
+            <div class="goods-main">
+                <h2 class="goods-title">INNER-GLUTA<span class="sub1 up_icon">TM</span>橄榄蓝莓胶原低聚肽</h2>
+                <p class="goods-presentation">
+                    INNER-GLUTA<span class="sub2 up_icon">TM</span>橄榄蓝莓胶原低聚肽源自新加坡国立大学FST项目组，是全球首款采用双重抗氧化机制研发的食品级健康产品。INNER-GLUTA<span class="sub3 up_icon">TM</span>精选欧洲橄榄果精华，配合挪威野生鳕鱼胶原蛋白肽和天然蓝莓花青素，针对每款原料的特性，科学配比、最大程度发挥橄榄多酚的健康优势。
+                </p>
+            </div>
+            <!--商品信息-->
+            <ul class="goods">
+                <li class="goods-introduce goods-person">
+                    <p class="goods-info-title">
+                        <span class="dot"></span>
+                        <span class="uer">适用人群</span>
+                    </p>
+                    <p class="goods-explain">食品级配方，无任何药物和保健品成分，适合所有有抗氧化需求的人群。</p>
+                </li>
+                <li class="goods-introduce goods-specification">
+                    <p class="goods-info-title">
+                        <span class="dot"></span>
+                        <span class="uer">产品规格</span>
+                    </p>
+                    <p class="goods-explain">5克/条*30条</p>
+                </li>
+                <li class="goods-introduce goods-method">
+                    <p class="goods-info-title">
+                        <span class="dot"></span>
+                        <span class="uer">食用方法</span>
+                    </p>
+                    <p class="goods-explain">取一袋本品，加入100ml温水（40℃以下），搅拌均匀后即可食用。
+                    </p>
+                </li>
+                <li class="goods-introduce goods-store">
+                    <p class="goods-info-title">
+                        <span class="dot"></span>
+                        <span class="uer">储存方法</span>
+                    </p>
+                    <p class="goods-explain">储存于阴凉干燥处，避免高温、阳光直射。</p>
+                </li>
+                <li class="goods-introduce goods-number">
+                    <p class="goods-info-title">
+                        <span class="dot"></span>
+                        <span class="uer">生产许可证编号</span>
+                    </p>
+                    <p class="goods-explain">SC10644060500661</p>
+                </li>
+                <li class="goods-introduce goods-expiration">
+                    <p class="goods-info-title">
+                        <span class="dot"></span>
+                        <span class="uer">保质期</span>
+                    </p>
+                    <p class="goods-explain">24个月</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--购买-->
+    <footer>立即购买</footer>
+</body>
+<script>
+    $(function() {
+        //点击返回
+        $('header').on('touchend', '.iconfont', function() {
+                window.history.go(-1);
+            })
+            //初始化swiper
+        var mySwiper = new Swiper('.swiper-container', {
+                autoplay: 3000, //可选选项，自动滑动
+                pagination: '.swiper-pagination',
+            })
+            //点击购买
+        $('footer').on('touchend', function() {
+            window.location.href = 'order.html'
+        })
+    })
+</script>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="max-age=7200"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/pay_success.css"/>
+    <link rel="stylesheet" href="lib/layer/layer.css">
+    <link rel="stylesheet" href="lib/layui/css/layui.mobile.css">
+    <script src="lib/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/rem/rem.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/layer/layer.js"></script>
+    <script src="lib/layui/layui.js"></script>
+    <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/layui/layui.all.js"></script>
+    <title></title>
+</head>
+<body>
+<!--头部-->
+<header>
+    <i class="iconfont">&#xe602;</i>
+    <p class="title">
+        支付成功
+    </p>
+</header>
+<!--支付状态-->
+<div id="main">
+    <div class="pay_status">
+        <i class="iconfont">&#xe641;</i>
+        <p class="pay_">订单支付成功！</p>
+    </div>
+    <!--介绍说明-->
+    <p class="hint">
+        我们的发货员将在8小时内与您取得联系，有任何疑问请拨打客服电话0411-84336120。
+    </p>
+    <!--关闭按钮-->
+    <div class="footer">
+        <div class="finish">
+            完成
+        </div>
+    </div>
+</div>
+</body>
+<script>
+$(function () {
+    $('.footer').on('touchend','.finish',function () {
+        window.location.href = 'index.html'
+    })
+})
+</script>
+</html>

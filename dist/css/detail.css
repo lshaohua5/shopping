@@ -1,0 +1,291 @@
+/*定义匹配*/
+
+html,
+body,
+ul,
+li,
+ol,
+dl,
+dd,
+dt,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+legend,
+img {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+a,
+u {
+    text-decoration: none;
+}
+
+img {
+    border: 0;
+    display: block;
+}
+
+em,
+i {
+    font-style: normal;
+}
+
+b,
+strong,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 100;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 0.68rem;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "NotoSansHant-Bold", "WenQuanYi Micro Hei", sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+body header {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    flex-flow: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-shadow: inset 0 -1px 0 0 #EEEEEE;
+    background: #fff;
+    position: fixed;
+    top: 0;
+}
+
+body header .iconfont {
+    color: #666;
+    font-size: 0.9rem;
+    padding-left: 0.2rem;
+}
+
+body header .title {
+    flex: 1;
+    text-align: center;
+    color: #333;
+    font-size: 0.77rem;
+    font-family: PingFangHK-Medium, sans-serif;
+}
+
+body #main-wrapper {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    background: #F5F5F5;
+    margin-top: 2rem;
+    margin-bottom: 2.13rem;
+}
+
+body #main-wrapper .main .swiper-container {
+    width: 100%;
+    background: #fff;
+}
+
+body #main-wrapper .main .swiper-container .swiper-wrapper {
+    width: 100%;
+}
+
+body #main-wrapper .main .swiper-container .swiper-wrapper .swiper-slide {
+    width: 100%;
+}
+
+body #main-wrapper .main .swiper-container .swiper-wrapper .swiper-slide img {
+    width: 100%;
+    border: 0;
+}
+
+body #main-wrapper .main .swiper-container .swiper-pagination .swiper-pagination-bullet-active {
+    background: #1DAF97;
+}
+
+body #main-wrapper .main .goods-price {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0 0.51rem;
+    width: 100%;
+    height: 2.13rem;
+    display: flex;
+    flex-flow: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #E7E7E7;
+    background: #fff;
+    font-size: 0;
+}
+
+body #main-wrapper .main .goods-price .price-info {
+    position: relative;
+    font-size: 0;
+}
+
+body #main-wrapper .main .goods-price .price-info .dollar {
+    font-family: PingFangHK-Medium, sans-serif;
+    font-size: 0.68rem;
+    color: #1DAF97;
+}
+
+body #main-wrapper .main .goods-price .price-info .price {
+    font-family: PingFangHK-Medium, sans-serif;
+    font-size: 1.19rem;
+    color: #1DAF97;
+}
+
+body #main-wrapper .main .goods-price .price-info .unit {
+    font-family: PingFangHK-Regular, sans-serif;
+    font-size: 0.51rem;
+    color: #999999;
+}
+
+body #main-wrapper .main .goods-price .price-info .discount {
+    display: inline-block;
+    width: 2.64rem;
+    height: .85rem;
+    background: url("../img/discount .png") no-repeat;
+    background-size: 100% 100%;
+    margin-left: 0.43rem;
+    position: absolute;
+    top: 0.6rem;
+}
+
+body #main-wrapper .main .goods-price .express {
+    background: #333333;
+    border-radius: 4.26rem;
+    width: 2.73rem;
+    height: 0.85rem;
+    font-family: PingFangHK-Medium, sans-serif;
+    font-size: 0.43rem;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+body #main-wrapper .main .goods-main {
+    width: 100%;
+    min-height: 6.4rem;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0.64rem 0.51rem 0.85rem;
+    background: #fff;
+    margin-bottom: 0.43rem;
+    position: relative;
+}
+
+body #main-wrapper .main .goods-main .up_icon {
+    font-family: PingFangHK-Medium, sans-serif;
+    font-size: 0.4rem;
+    color: #333333;
+    position: relative;
+    top: -0.3rem;
+}
+
+body #main-wrapper .main .goods-main .sub1 {
+    color: #1DAF97;
+}
+
+body #main-wrapper .main .goods-main .goods-title {
+    font-family: PingFangHK-Medium, sans-serif;
+    font-size: 0.77rem;
+    color: #1DAF97;
+}
+
+body #main-wrapper .main .goods-main .goods-presentation {
+    font-family: PingFangHK-Regular, sans-serif;
+    font-size: 0.6rem;
+    color: #666666;
+    margin-top: 0.43rem;
+}
+
+body #main-wrapper .main .goods {
+    width: 100%;
+    min-height: 14.75rem;
+    background: #fff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0 0.51rem;
+}
+
+body #main-wrapper .main .goods .goods-introduce {
+    width: 100%;
+    min-height: 2rem;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0.85rem 0 0;
+}
+
+body #main-wrapper .main .goods .goods-introduce .goods-info-title {
+    position: relative;
+    font-family: PingFangHK-Regular, sans-serif;
+    font-size: 0.6rem;
+    color: #999999;
+}
+
+body #main-wrapper .main .goods .goods-introduce .goods-info-title .dot {
+    display: inline-block;
+    width: 0.17rem;
+    height: 0.17rem;
+    background: #999999;
+    border-radius: 60%;
+    margin-right: .26rem;
+    position: relative;
+    top: -0.13rem;
+}
+
+body #main-wrapper .main .goods .goods-introduce .goods-explain {
+    font-family: PingFangHK-Regular, sans-serif;
+    font-size: 0.6rem;
+    color: #666666;
+    margin-top: 0.43rem;
+}
+
+body footer {
+    width: 100%;
+    height: 2.13rem;
+    background: #1DAF97;
+    font-family: PingFang-SC-Medium, sans-serif;
+    font-size: 0.85rem;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 2.13rem;
+    position: fixed;
+    bottom: 0;
+}

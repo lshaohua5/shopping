@@ -1,0 +1,183 @@
+/*定义匹配*/
+html,
+body,
+ul,
+li,
+ol,
+dl,
+dd,
+dt,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+legend,
+img {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+a,
+u {
+  text-decoration: none;
+}
+img {
+  border: 0;
+  display: block;
+}
+em,
+i {
+  font-style: normal;
+}
+b,
+strong,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 100;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 0.68rem;
+}
+html {
+  width: 100%;
+  height: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "NotoSansHant-Bold", "WenQuanYi Micro Hei", sans-serif;
+}
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+body header {
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-shadow: inset 0 -1px 0 0 #EEEEEE;
+}
+body header .iconfont {
+  color: #666;
+  font-size: 0.9rem;
+  padding-left: 0.2rem;
+}
+body header .title {
+  flex: 1;
+  text-align: center;
+  color: #333;
+  font-size: 0.77rem;
+  font-family: PingFangHK-Medium, sans-serif;
+}
+body #main {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+}
+body #main .pay_status {
+  width: 95%;
+  height: 7.85rem;
+  text-align: center;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  padding: 2.26rem 0;
+  border-bottom: 1px solid #E7E7E7;
+  margin: 0 0.51rem;
+}
+body #main .pay_status .iconfont {
+  color: #1DAF97;
+  font-size: 2.7rem;
+}
+body #main .pay_status .fail {
+  color: #EA4848;
+}
+body #main .pay_status .pay_ {
+  width: 100%;
+  height: 2rem;
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 0.77rem;
+  color: #333333;
+  text-align: center;
+  line-height: 2rem;
+}
+body #main .hint {
+  width: 100%;
+  flex: 1;
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 0.68rem;
+  color: #666666;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  padding: 0.94rem;
+}
+body #main .footer {
+  width: 100%;
+  height: 4.01rem;
+  display: flex;
+  justify-content: center;
+}
+body #main .footer .finish {
+  width: 8.53rem;
+  height: 1.88rem;
+  background: #1DAF97;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 1.88rem;
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 0.85rem;
+  color: #FFFFFF;
+}
+body #main .pay_type {
+  width: 100%;
+  height: 6.31rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+body #main .pay_type .continue {
+  width: 8.53rem;
+  height: 1.88rem;
+  background: #1DAF97;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 1.88rem;
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 0.85rem;
+  color: #FFFFFF;
+  margin: 0 auto;
+}
+body #main .pay_type .abandon {
+  width: 8.53rem;
+  height: 1.88rem;
+  background: #FFFFFF;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 1.88rem;
+  font-family: PingFangHK-Regular, sans-serif;
+  font-size: 0.85rem;
+  color: #1DAF97;
+  border: 1px solid #1DAF97;
+  margin: 0.68rem auto;
+}

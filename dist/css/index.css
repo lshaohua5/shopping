@@ -1,0 +1,228 @@
+/*定义匹配*/
+
+html,
+body,
+ul,
+li,
+ol,
+dl,
+dd,
+dt,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+legend,
+img {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+a,
+u {
+    text-decoration: none;
+}
+
+img {
+    border: 0;
+    display: block;
+}
+
+em,
+i {
+    font-style: normal;
+}
+
+b,
+strong,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 100;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 0.68rem;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "NotoSansHant-Bold", "WenQuanYi Micro Hei", sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
+}
+
+body #main-wrapper {
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    flex-flow: column;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0.43rem 0.54rem;
+    margin-bottom: 2.13rem;
+}
+
+body #main-wrapper .main {
+    width: 100%;
+}
+
+body #main-wrapper .main header {
+    font-family: PingFangHK-Regular, sans-serif;
+    font-size: 0.85rem;
+    color: #333333;
+}
+
+body #main-wrapper .main .author {
+    width: 100%;
+    height: 3.99rem;
+    display: flex;
+    flex-flow: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body #main-wrapper .main .author .au {
+    display: flex;
+    flex-flow: nowrap;
+}
+
+body #main-wrapper .main .author .au .logo {
+    width: 1.19rem;
+    height: 1.19rem;
+    margin-right: 0.43rem;
+}
+
+body #main-wrapper .main .author .au .author_info img {
+    width: 4.4rem;
+    height: 0.55rem;
+}
+
+body #main-wrapper .main .author .au .author_info .release_time {
+    font-family: PingFangHK-Regular, sans-serif;
+    font-size: 0.51rem;
+    color: #666666;
+    margin-top: 0.21rem;
+}
+
+body #main-wrapper .main .author .author_img {
+    width: 4.52rem;
+    height: 2.77rem;
+}
+
+body #main-wrapper .main .goods_info {
+    font-family: PingFangHK-Regular, sans-serif;
+    font-size: 0.68rem;
+    color: #333333;
+    letter-spacing: 0;
+    line-height: 1.07rem;
+    text-indent: 1.3rem;
+}
+
+body #main-wrapper .main .goods_info .font_color {
+    color: #1DAF97;
+}
+
+body #main-wrapper .main .introduce {
+    width: 100%;
+    height: 23.45rem;
+}
+
+body #main-wrapper .main .goods {
+    width: 100%;
+    margin-top: 1.34rem;
+}
+
+body #main-wrapper .main .goods .goods_li {
+    width: 100%;
+    margin-top: 1.43rem;
+}
+
+body #main-wrapper .main .goods .goods_li h2 {
+    font-family: PingFangHK-Medium, sans-serif;
+    font-size: 0.77rem;
+    color: #333333;
+}
+
+body #main-wrapper .main .goods .goods_li img {
+    width: 12.77rem;
+    margin: 1.15rem auto 0.85rem;
+}
+
+body #main-wrapper .main .goods .goods_li .effect6_d {
+    font-family: PingFangHK-Regular, sans-serif;
+    font-size: 0.51rem;
+    color: #333333;
+    letter-spacing: 0;
+    margin-top: 0.34rem;
+    margin-bottom: 0.5rem;
+    margin-left: 1.5rem;
+}
+
+body #main-wrapper .main .goods .goods_li .goods_li_main {
+    width: 100%;
+    font-family: PingFangHK-Regular, sans-serif;
+    font-size: 0.68rem;
+    color: #333333;
+    letter-spacing: 0;
+    line-height: 1.07rem;
+    text-indent: 1.5rem;
+}
+
+body #main-wrapper .main .goods .goods_li .goods_li_main .font_color {
+    color: #1DAF97;
+}
+
+body #main-wrapper .main .er_code {
+    margin: 1rem auto;
+}
+
+body #main-wrapper .main .attention {
+    width: 100%;
+    height: 3rem;
+    font-family: PingFangHK-Regular, sans-serif;
+    font-size: 0.68rem;
+    color: #333333;
+    text-align: center;
+    position: relative;
+    top: -0.6rem;
+}
+
+body footer {
+    width: 100%;
+    height: 2.13rem;
+    background: #990001;
+    font-family: PingFang-SC-Medium, sans-serif;
+    font-size: 0.85rem;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 2.13rem;
+    position: fixed;
+    bottom: 0;
+}

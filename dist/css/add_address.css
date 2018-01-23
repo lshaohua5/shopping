@@ -1,0 +1,260 @@
+/*定义匹配*/
+
+html,
+body,
+ul,
+li,
+ol,
+dl,
+dd,
+dt,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+legend,
+img {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+a,
+u {
+    text-decoration: none;
+}
+
+img {
+    border: 0;
+    display: block;
+}
+
+em,
+i {
+    font-style: normal;
+}
+
+b,
+strong,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 100;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 0.68rem;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "NotoSansHant-Bold", "WenQuanYi Micro Hei", sans-serif;
+}
+
+body {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+body header {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    flex-flow: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-shadow: inset 0 -1px 0 0 #EEEEEE;
+}
+
+body header .iconfont {
+    color: #666;
+    font-size: 0.9rem;
+    padding-left: 0.2rem;
+}
+
+body header .title {
+    flex: 1;
+    text-align: center;
+    color: #333;
+    font-size: 0.77rem;
+    font-family: PingFangHK-Medium, sans-serif;
+}
+
+body #main {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    background: #F5F5F5;
+}
+
+body #main .add_style {
+    width: 100%;
+    height: 2.13rem;
+    background: #FFFFFF;
+    box-shadow: inset 0 -1px 0 0 #EEEEEE;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0 0.51rem;
+    display: flex;
+    flex-flow: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body #main .active {
+    border: 1px solid #1DAF97;
+    border-radius: 4px;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    animation: shake 0.1s linear;
+    animation-iteration-count: 4;
+}
+
+@keyframes shake {
+    from {
+        left: 1px
+    }
+    to {
+        left: -1px
+    }
+}
+
+@-webkit-keyframes shake {
+    from {
+        left: 1px
+    }
+    to {
+        left: -1px
+    }
+}
+
+@-o-keyframes shake {
+    from {
+        left: 1px
+    }
+    to {
+        left: -1px
+    }
+}
+
+@-moz-keyframes shake {
+    from {
+        left: 1px
+    }
+    to {
+        left: -1px
+    }
+}
+
+body #main .add_style .add_title {
+    font-family: PingFangHK-Regular, sans-serif;
+    font-size: 0.68rem;
+    color: #333333;
+}
+
+body #main .add_style .user-name {
+    border: 0;
+    font-family: PingFangHK-Regular, sans-serif;
+    font-size: 0.68rem;
+    width: 11.21rem;
+}
+
+body #main .add_style ::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #999;
+}
+
+body #main .add_style :-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #999;
+}
+
+body #main .add_style ::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #999;
+}
+
+body #main .add_style :-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #999;
+}
+
+body #main .select .selectList {
+    position: relative;
+}
+
+body #main .select .selectList select {
+    width: 3.51rem;
+    height: 1.36rem;
+    background: #FFFFFF;
+    border: 1px solid #979797;
+    border-radius: 4px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0 0.3rem;
+    color: #333333;
+}
+
+body #main .select .selectList .iconfont {
+    font-size: 0.5rem;
+    color: #979797;
+    position: absolute;
+    top: 0.4rem;
+}
+
+body #main .select .selectList .cmbProvince-icon {
+    left: 2.8rem;
+}
+
+body #main .select .selectList .cmbCity-icon {
+    left: 6.5rem;
+}
+
+body #main .select .selectList .cmbArea-icon {
+    left: 10.2rem;
+}
+
+body #main .info {
+    flex: 1;
+    font-family: PingFangHK-Regular, sans-serif;
+    font-size: 0.6rem;
+    color: #666666;
+    padding: 0.43rem 0.51rem;
+}
+
+body footer {
+    width: 100%;
+    height: 2.13rem;
+    background: #1DAF97;
+    font-family: PingFang-SC-Medium, sans-serif;
+    font-size: 0.85rem;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 2.13rem;
+}
