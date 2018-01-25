@@ -11,11 +11,10 @@
     <link rel="stylesheet" href="lib/layui/css/layui.mobile.css">
     <script src="lib/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
     <script src="lib/rem/rem.js" type="text/javascript" charset="utf-8"></script>
-    <script src="lib/iscroll/iscroll-probe.js" type="text/javascript" charset="utf-8"></script>
     <script src="lib/layer/layer.js"></script>
     <script src="lib/layui/layui.js"></script>
     <script src="lib/layui/layui.all.js"></script>
-    <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/add_address.js"></script>
     <title></title>
 </head>
 
@@ -72,145 +71,6 @@
     </footer>
 </body>
 <script>
-    $(function() {
-        //点击返回
-        $('header').on('touchend', '.iconfont', function() {
-                window.history.go(-1);
-            })
-            //判断收货人 非空
-        function verifyUser() {
-            if ($('.user-name').val() == '') {
-                $('.user').addClass('active');
-                layer.msg('收货人姓名不能为空');
-                return false;
-            } else {
-                $('.user').removeClass('active');
-                return true;
-            }
-        }
-        //验证电话号码
-        function verifyTell() {
-            var ExpTell = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/;
-            if ($('.tell-info').val().match(ExpTell)) {
-                $('.tell').removeClass('active');
-                return true;
-            } else {
-                $('.tell').addClass('active')
-                layer.msg('请填写正确的手机号');
-                return false;
-            }
-        }
-
-        //判断地址非空
-        function verifyAddr() {
-            if ($('.add-info').val() == '') {
-                $('.address').addClass('active')
-                layer.msg('详细地址不能为空');
-                return false;
-            } else {
-                $('.address').removeClass('active');
-                return true;
-            }
-        }
-        $('.user').on('blur', '.user-name', function() {
-            verifyUser();
-        })
-        $('.tell').on('blur', '.tell-info', function() {
-            verifyTell();
-        })
-        $('.address').on('blur', '.add-info', function() {
-                verifyAddr();
-            })
-            //判断验证是否通过
-        $('footer').on('touchend', function() {
-            var name = $('.user-name').val();
-            var cell = $('.tell-info').val();
-            var province = $('#cmbProvince').val();
-            var city = $('#cmbCity').val();
-            var area = $('#cmbArea').val();
-            var pro = province + city + area;
-            var address = $('.add-info').val();
-            var obj = {};
-            obj.name = name;
-            obj.cell = cell;
-            obj.pro = pro;
-            obj.address = address;
-            var userInfo = JSON.stringify(obj);
-            sessionStorage.removeItem('userInfo');
-            sessionStorage.setItem('userInfo', userInfo);
-            if (verifyUser() && verifyTell() && verifyAddr()) {
-                window.location.href = 'order.html?add'
-            }
-        })
-
-        // 纯JS省市区三级联动
-        var addressInit = function(_cmbProvince, _cmbCity, _cmbArea, defaultProvince, defaultCity, defaultArea) {
-            var cmbProvince = document.getElementById(_cmbProvince);
-            var cmbCity = document.getElementById(_cmbCity);
-            var cmbArea = document.getElementById(_cmbArea);
-
-            function cmbSelect(cmb, str) {
-                for (var i = 0; i < cmb.options.length; i++) {
-                    if (cmb.options[i].value == str) {
-                        cmb.selectedIndex = i;
-                        return;
-                    }
-                }
-            }
-
-            function cmbAddOption(cmb, str, obj) {
-                var option = document.createElement("OPTION");
-                cmb.options.add(option);
-                option.innerText = str;
-                option.value = str;
-                option.obj = obj;
-            }
-
-            function changeCity() {
-                cmbArea.options.length = 0;
-                if (cmbCity.selectedIndex == -1) return;
-                var item = cmbCity.options[cmbCity.selectedIndex].obj;
-                for (var i = 0; i < item.prefectureList.length; i++) {
-                    cmbAddOption(cmbArea, item.prefectureList[i].name, null);
-                }
-                cmbSelect(cmbArea, defaultArea);
-            }
-
-            function changeProvince() {
-                cmbCity.options.length = 0;
-                cmbCity.onchange = null;
-                if (cmbProvince.selectedIndex == -1) return;
-                var item = cmbProvince.options[cmbProvince.selectedIndex].obj;
-                for (var i = 0; i < item.cityList.length; i++) {
-                    cmbAddOption(cmbCity, item.cityList[i].name, item.cityList[i]);
-                }
-                cmbSelect(cmbCity, defaultCity);
-                changeCity();
-                cmbCity.onchange = changeCity;
-            }
-
-            for (var i = 0; i < provinceList.length; i++) {
-                cmbAddOption(cmbProvince, provinceList[i].name, provinceList[i]);
-            }
-            cmbSelect(cmbProvince, defaultProvince);
-            changeProvince();
-            cmbProvince.onchange = changeProvince;
-        };
-        //cityList 市级  prefectureList 县级
-        var provinceList = [{
-            "code": "11",
-            "name": "北京市",
-            "cityList": [{
-                "code": "1101",
-                "name": "市辖区",
-                "prefectureList": [{
-                    "code": "110101",
-                    "name": "东城区"
-                }]
-            }]
-        }];
-        addressInit('cmbProvince', 'cmbCity', 'cmbArea');
-    })
 </script>
 
 </html>

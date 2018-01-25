@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="max-age=7200"/>
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
-    <link rel="stylesheet" type="text/css" href="css/pay_success.css"/>
+    <meta http-equiv="Cache-Control" content="max-age=7200" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="css/pay_success.css" />
     <link rel="stylesheet" href="lib/layer/layer.css">
     <link rel="stylesheet" href="lib/layui/css/layui.mobile.css">
     <script src="lib/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
@@ -14,41 +14,105 @@
     <script src="lib/layer/layer.js"></script>
     <script src="lib/layui/layui.js"></script>
     <script src="lib/layui/layui.all.js"></script>
-    <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
     <title></title>
 </head>
+
 <body>
-<!--头部-->
-<header>
-    <i class="iconfont">&#xe602;</i>
-    <p class="title">
-        支付结果
-    </p>
-</header>
-<!--支付状态-->
-<div id="main">
-    <div class="pay_status">
-        <i class="iconfont fail">&#xe674;</i>
-        <p class="pay_">订单支付失败！</p>
-    </div>
-    <!--介绍说明-->
-    <p class="hint">请重新支付，有任何疑问请拨打客服电话0411-84336120咨询。</p>
-    <!--关闭按钮-->
-    <div class="pay_type">
-        <div class="finish continue">
-            继续支付
+    <!--头部-->
+    <header>
+        <i class="iconfont">&#xe602;</i>
+        <p class="title">
+            支付结果
+        </p>
+    </header>
+    <!--支付状态-->
+    <div id="main">
+        <div class="pay_status">
+            <i class="iconfont fail">&#xe674;</i>
+            <p class="pay_">订单支付失败！</p>
         </div>
-        <div class="abandon">
-            放弃支付
+        <!--介绍说明-->
+        <p class="hint">请重新支付，有任何疑问请拨打客服电话0411-84336120咨询。</p>
+        <!--关闭按钮-->
+        <div class="pay_type">
+            <div class="finish continue">
+                继续支付
+            </div>
+            <div class="abandon">
+                放弃支付
+            </div>
         </div>
     </div>
-</div>
-<script>
-   $(function () {
-       $('#main').on('touchend','.continue',function () {
-           window.location.href = 'pay_success.html'
-       })
-   })
-</script>
+    <script>
+        $(function() {
+            //点击返回
+            $('header').on('touchend', '.iconfont', function() {
+                window.history.back();
+            })
+
+            //放弃支付
+            $('.pay_type').on('touchend', '.abandon', function() {
+                window.location.href = 'index.html'
+            })
+
+            //获取订单id和支付url
+            var payInfo = sessionStorage.getItem('payInfo');
+            payInfo = JSON.parse(payInfo);
+            var orderId = payInfo.orderId;
+            var mweb_url = payInfo.mweb_url;
+            //点击继续支付
+            $('#main').on('touchend', '.continue', function() {
+                orderStatus(orderId)
+            });
+            //查询订单状态
+            function orderStatus(orderId) {
+                $.ajax({
+                    url: '/api/query_order.php',
+                    type: 'get',
+                    async: false,
+                    dataType: "JSON",
+                    data: {
+                        orderId: orderId,
+                        sign: ''
+                    },
+                    success: function(data) {
+                        var orderId = data.data.orderId;
+                        var orderStatus = data.data.orderStatus;
+                        if (orderStatus == 0) {
+                            getUrl(orderId);
+                        } else {
+                            window.location.href = 'pay_success.html';
+                        }
+                    },
+                    error: function() {
+                        console.log('下单api获取失败')
+                    }
+                })
+            }
+            //获取支付url
+            function getUrl(orderId) {
+                $.ajax({
+                    url: '/api/prepay.php',
+                    type: 'post',
+                    dataType: "JSON",
+                    async: false,
+                    data: {
+                        orderId: orderId
+                    },
+                    success: function(data) {
+                        var orderId = data.data.orderId;
+                        var mweb_url = data.data.mweb_url;
+                        sessionStorage.removeItem('payUrl');
+                        sessionStorage.setItem('payUrl', mweb_url);
+                        window.location.assign(mweb_url);
+                    },
+                    error: function() {
+                        console.log('下单api获取失败')
+                    }
+                })
+            }
+        })
+    </script>
 </body>
+
 </html>

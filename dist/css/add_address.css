@@ -257,4 +257,6 @@ body footer {
     color: #FFFFFF;
     text-align: center;
     line-height: 2.13rem;
+    position: absolute;
+    bottom: 0;
 }

@@ -7,16 +7,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="css/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="css/detail.css" />
-    <link rel="stylesheet" href="lib/layer/layer.css">
     <link rel="stylesheet" href="lib/swiper/swiper.min.css">
-    <link rel="stylesheet" href="lib/layui/css/layui.mobile.css">
     <script src="lib/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
     <script src="lib/rem/rem.js" type="text/javascript" charset="utf-8"></script>
     <script src="lib/swiper/swiper.min.js"></script>
-    <script src="lib/layer/layer.js"></script>
-    <script src="lib/layui/layui.js"></script>
-    <script src="lib/layui/layui.all.js"></script>
-    <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
     <title></title>
 </head>
 
@@ -123,17 +117,29 @@
     $(function() {
         //点击返回
         $('header').on('touchend', '.iconfont', function() {
-                window.history.go(-1);
-            })
-            //初始化swiper
+            window.history.back();
+        })
+
+        //初始化swiper
         var mySwiper = new Swiper('.swiper-container', {
-                autoplay: 3000, //可选选项，自动滑动
-                pagination: '.swiper-pagination',
-            })
-            //点击购买
+            autoplay: 3000, //可选选项，自动滑动
+            pagination: '.swiper-pagination',
+        })
+
+        //点击购买
         $('footer').on('touchend', function() {
             window.location.href = 'order.html'
         })
+
+        //判斷瀏覽器訪問的頁面
+        if (sessionStorage.getItem('payInfo')) {
+            sessionStorage.removeItem('payInfo')
+        }
+        //判斷瀏覽器訪問的頁面
+        if (sessionStorage.getItem('userInfo')) {
+            sessionStorage.removeItem('userInfo')
+        }
+
     })
 </script>
 

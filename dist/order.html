@@ -15,6 +15,7 @@
     <script src="lib/layer/layer.js"></script>
     <script src="lib/layui/layui.js"></script>
     <script src="lib/layui/layui.all.js"></script>
+    <script src="js/order.js"></script>
     <title></title>
 </head>
 
@@ -50,7 +51,7 @@
                 <div class="goods">
                     <div class="goods-name">INNER-GLUTA<span class="up_icon">TM</span>橄榄多酚蓝莓胶原蛋白肽(食品配方)</div>
                     <div class="shop-car">
-                        <span class="goods-price">￥1288.00</span>
+                        <span class="goods-price">￥1288</span>
                         <p class="shopping">
                             <i class="iconfont minus" data-num='-1'>&#xe665;</i>
                             <span class="goods-num">1</span>
@@ -86,7 +87,7 @@
                     <p>商品*
                         <span class="num">1</span>
                     </p>
-                    <span class="price">￥1288.00</span>
+                    <span class="price">￥1288</span>
                 </li>
                 <li class="express">
                     <span>运费（包邮）</span>
@@ -105,166 +106,19 @@
     </div>
     <!--购买-->
     <footer>
-        <div class="total-price">￥1288.00</div>
+        <div class="total-price">￥1288</div>
         <div class="account">立即结算</div>
     </footer>
+    <!-- 遮罩层 -->
+    <div class="shade" style="display:none">
+
+    </div>
+    <!-- 判断支付状态 -->
+    <ul class="shade_wrapper" style="display:none">
+        <li class="pay_title">请确认微信支付是否已完成</li>
+        <li class="pay_success">已完成支付</li>
+        <li class="pay_fail">支付遇到问题，重新支付</li>
+    </ul>
 </body>
-<script>
-    $(function() {
-        //点击返回
-        $('header').on('touchend', '.iconfont', function() {
-                window.history.go(-1);
-            })
-            //判断用户页面来源
-        var url = window.location.href.split('?')[1];
-        //添加地址
-        if (url != undefined) {
-            //获取用户地址
-            var userInfo = sessionStorage.getItem('userInfo');
-            userInfo = JSON.parse(userInfo);
-            var name = userInfo.name;
-            var cell = userInfo.cell;
-            var pro = userInfo.pro;
-            var address = userInfo.address;
-            $('.addr-no').hide();
-            $('.addr').show();
-            $('.addr .userName').text(name);
-            $('.addr .tell').text(cell);
-            $('.addr .address-county').text(pro);
-            $('.addr .location').text(address);
-            var orderIscroll = new IScroll('#main-wrapper', {});
-        } else { //用户未添加地址
-            $('.addr').hide();
-            $('.addr-no').show();
-            var orderIscroll = new IScroll('#main-wrapper', {});
-            $('.address-wrapper').on('touchend', function() {
-                window.location.href = 'add_address.html'
-            })
-        }
-        //商品加 减
-        var num = 1; //初始化菜品数量
-        function shop(flag) {
-            if (flag > 0) {
-                num++;
-                $('.goods-num').text(num);
-                $('.shop-num .num').text(num);
-                $('.shop-num .price').text('￥' + (num * 1288).toFixed(2));
-                $('.discount .discount-info').text('￥' + (num * 1288 * 0.2).toFixed(2));
-                $('.price .total-price').text('￥' + (num * 1288 * 0.8).toFixed(2));
-                $('footer .total-price').text('￥' + (num * 1288 * 0.8).toFixed(2));
-            } else {
-                if (num == 1) {
-                    $('.shop-num .price').text('￥' + 1288.00);
-                    $('.discount .discount-info').text('无优惠');
-                    $('.price .total-price').text('￥' + 1288.00);
-                    $('footer .total-price').text('￥' + 1288.00);
-                    return false
-                }
-                num--;
-                if (num == 1) {
-                    $('.shop-num .price').text('￥' + 1288.00);
-                    $('.discount .discount-info').text('无优惠');
-                    $('.price .total-price').text('￥' + 1288.00);
-                    $('footer .total-price').text('￥' + 1288.00);
-                }
-                $('.goods-num').text(num);
-                $('.shop-num .num').text(num);
-                $('.shop-num .price').text('￥' + (num * 1288).toFixed(2));
-                $('.discount .discount-info').text('￥' + (num * 1288 * 0.2).toFixed(2));
-                $('.price .total-price').text('￥' + (num * 1288 * 0.8).toFixed(2));
-                $('footer .total-price').text('￥' + (num * 1288 * 0.8).toFixed(2));
-            }
-        }
-
-        $('.shopping').on('touchend', '.iconfont', function() {
-            var flag = $(this).attr('data-num');
-            shop(flag)
-        })
-        $('footer').on('click', '.account', function() {
-                if (url == undefined) {
-                    layer.msg('请填写收货人地址')
-                } else {
-                    create_order();
-                }
-            })
-            //确认下单
-        function create_order() {
-            $.ajax({
-                url: '/api/create_order.php',
-                type: 'post',
-                async: false,
-                dataType: "JSON",
-                data: {
-                    productId: '',
-                    price: 888,
-                    name: name,
-                    cell: cell,
-                    address: pro + address,
-                    num: num,
-                    remark: '',
-                    device: '',
-                    sign: '',
-                    sign: ''
-                },
-                success: function(data) {
-                    var orderId = data.data.orderId;
-                    getUrl(orderId);
-                    orderStatus(orderId)
-                },
-                error: function() {
-                    console.log('下单api获取失败')
-                }
-            })
-        }
-        //查询订单状态
-        function orderStatus(orderId) {
-            $.ajax({
-                url: '/api/query_order.php',
-                type: 'get',
-                async: false,
-                dataType: "JSON",
-                data: {
-                    orderId: orderId,
-                    sign: ''
-                },
-                success: function(data) {
-                    var orderId = data.data.orderId;
-                    var orderStatus = data.data.orderStatus;
-                    if (orderStatus == 0) {
-
-                    }
-                    if (orderStatus == 1) {
-
-                    }
-                },
-                error: function() {
-                    console.log('下单api获取失败')
-                }
-            })
-        }
-        //获取支付url
-        function getUrl(orderId) {
-            $.ajax({
-                url: '/api/prepay.php',
-                type: 'post',
-                dataType: "JSON",
-                async: false,
-                data: {
-                    orderId: orderId
-                },
-                success: function(data) {
-                    var orderId = data.data.orderId;
-                    var mweb_url = data.data.mweb_url;
-                    sessionStorage.removeItem('payUrl');
-                    sessionStorage.setItem('payUrl', mweb_url);
-                    window.location.assign(mweb_url);
-                },
-                error: function() {
-                    console.log('下单api获取失败')
-                }
-            })
-        }
-    })
-</script>
 
 </html>

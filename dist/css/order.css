@@ -240,6 +240,14 @@ body #main-wrapper .main .order-wrapper .goods .shop-car .shopping .minus {
     top: -0.03rem;
 }
 
+body #main-wrapper .main .order-wrapper .goods .shop-car .shopping .shade {
+    font-size: 1.05rem;
+    position: relative;
+    top: -0.03rem;
+    z-index: 100;
+    color: #999999;
+}
+
 body #main-wrapper .main .order-wrapper .goods .shop-car .shopping .goods-num {
     font-family: PingFangHK-Medium, sans-serif;
     font-size: 0.77rem;
@@ -363,4 +371,57 @@ body footer .account {
     color: #FFFFFF;
     text-align: center;
     line-height: 2.13rem;
+}
+
+body .shade {
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    background: #999999;
+    position: fixed;
+    z-index: 9;
+    top: 0;
+}
+
+body .shade_wrapper {
+    width: 12.15rem;
+    height: 7.25rem;
+    border-radius: 4px;
+    opacity: 1;
+    background: #ffffff;
+    position: absolute;
+    z-index: 100;
+    top: 8rem;
+    left: 14%;
+    font-family: PingFangHK-Regular, sans-serif;
+    cursor: pointer;
+}
+
+body .shade_wrapper .pay_title {
+    width: 12.15rem;
+    height: 2.13rem;
+    text-align: center;
+    line-height: 2.13rem;
+    font-size: 0.68rem;
+    color: #333333;
+}
+
+body .shade_wrapper .pay_success {
+    width: 12.15rem;
+    height: 2.56rem;
+    text-align: center;
+    line-height: 2.56rem;
+    font-size: 0.77rem;
+    color: #1DAF97;
+    border-top: 1px solid #EEEEEE;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+body .shade_wrapper .pay_fail {
+    width: 12.15rem;
+    height: 2.56rem;
+    text-align: center;
+    line-height: 2.56rem;
+    font-size: 0.77rem;
+    color: #333333;
 }

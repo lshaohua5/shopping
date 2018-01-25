@@ -5,24 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="max-age=7200" />
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <script>
-        //获取浏览器页面可见高度和宽度
-        var _PageHeight = document.documentElement.clientHeight,
-            _PageWidth = document.documentElement.clientWidth;
-        var _LoadingHtml = '<div id="loadingDiv" style="position:absolute;left:0;top:0;width:' + _PageWidth + 'px;height:' + _PageHeight + 'px;z-index:10000;"><img style="position: absolute;width:' + _PageWidth + 'px;height:' + _PageHeight + 'px;" src="img/loader.jpg" /></div>';
-        //呈现loading效果
-        document.write(_LoadingHtml);
-        //监听加载状态改变
-        document.onreadystatechange = completeLoading;
-
-        //加载状态为complete时移除loading效果
-        function completeLoading() {
-            if (document.readyState == "complete") {
-                var loadingMask = document.getElementById('loadingDiv');
-                loadingMask.style.display = "none";
-            }
-        }
-    </script>
     <script src="lib/rem/rem.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="css/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -117,9 +99,20 @@
     <footer>相关产品</footer>
 </body>
 <script>
-    //点击相关产品 页面跳转
-    $('footer').on('touchend', function() {
-        window.location.href = 'detail.html'
+    $(function() {
+        //点击相关产品 页面跳转
+        $('footer').on('touchend', function() {
+            window.location.href = 'detail.html'
+        })
+
+        //判斷瀏覽器訪問的頁面
+        if (sessionStorage.getItem('payInfo')) {
+            sessionStorage.removeItem('payInfo')
+        }
+        //判斷瀏覽器訪問的頁面
+        if (sessionStorage.getItem('userInfo')) {
+            sessionStorage.removeItem('userInfo')
+        }
     })
 </script>
 
