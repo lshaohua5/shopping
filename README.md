@@ -9,5 +9,6 @@
 npm install
 
 # serve with hot reload at localhost:8080
+copy-index#编译index页面
 gulp
 
