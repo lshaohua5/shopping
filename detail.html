@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="lib/swiper/swiper.min.css">
     <script src="lib/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
     <script src="lib/rem/rem.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/MD5/md5.js" type="text/javascript" charset="utf-8"></script>
     <script src="lib/swiper/swiper.min.js"></script>
     <title></title>
 </head>
@@ -47,7 +48,7 @@
             <div class="goods-price">
                 <div class="price-info">
                     <span class="dollar">￥</span>
-                    <span class="price">1288</span>
+                    <span class="price"></span>
                     <span class="unit">/盒</span>
                     <span class="discount">多件八折</span>
                 </div>
@@ -118,18 +119,18 @@
         //点击返回
         $('header').on('touchend', '.iconfont', function() {
             window.history.back();
-        })
+        });
 
         //初始化swiper
         var mySwiper = new Swiper('.swiper-container', {
             autoplay: 3000, //可选选项，自动滑动
             pagination: '.swiper-pagination',
-        })
+        });
 
         //点击购买
         $('footer').on('touchend', function() {
             window.location.href = 'order.html'
-        })
+        });
 
         //判斷瀏覽器訪問的頁面
         if (sessionStorage.getItem('payInfo')) {
@@ -138,8 +139,41 @@
         //判斷瀏覽器訪問的頁面
         if (sessionStorage.getItem('userInfo')) {
             sessionStorage.removeItem('userInfo')
+        };
+        var ts = new Date().getTime();
+        var time = new Date().getTime();
+        console.log(time);
+        time = 'ts=' + time + '';
+        var pr = 'productId=1';
+        var arr = [pr, time];
+        arr = arr.sort();
+        var stringA = arr.join('&');
+        var stringSignTemp = stringA + '&key=innergluta@2018';
+        var sign = hex_md5(stringSignTemp).toUpperCase();
+        console.log(sign);
+        getProduct(ts, sign);
+        //获取商品详情
+        function getProduct(ts, sign) {
+            $.ajax({
+                url: '/api/product.php',
+                type: 'get',
+                dataType: "JSON",
+                async: false,
+                data: {
+                    productId: 1,
+                    device: '',
+                    ts: ts,
+                    sign: sign
+                },
+                success: function(data) {
+                    console.log(data)
+                    $('.price-info .price').text(data.data.price);
+                },
+                error: function() {
+                    console.log('商品详情API获取失败')
+                }
+            })
         }
-
     })
 </script>
 
