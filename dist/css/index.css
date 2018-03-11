@@ -87,10 +87,12 @@ body #main-wrapper {
     -webkit-box-sizing: border-box;
     padding: 0.43rem 0.54rem;
     margin-bottom: 2.13rem;
+    -webkit-overflow-scrolling: touch;
 }
 
 body #main-wrapper .main {
     width: 100%;
+    -webkit-overflow-scrolling: touch;
 }
 
 body #main-wrapper .main header {

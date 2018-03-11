@@ -12,3 +12,31 @@
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
+.border-1px{
+  border: 1px solid #000;
+}
+/* 2倍素 */
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5){
+  .border-1px{
+      -webkit-transform: scaleY(0.7);
+              transform: scaleY(0.7);
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio : 2){
+  .border-1px{
+      -webkit-transform: scaleY(0.5);
+              transform: scaleY(0.5);
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio : 3){
+  .border-1px{
+      -webkit-transform: scaleY(0.33);
+              transform: scaleY(0.33);
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio : 4){
+  .border-1px{
+      -webkit-transform: scaleY(0.25);
+              transform: scaleY(0.25);
+  }
+}
