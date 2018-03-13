@@ -30,22 +30,22 @@
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="img/goods1.jpg" alt='橄榄多酚蓝莓胶原蛋白肽'>
+                        <img src="img/banner1.jpg" alt='橄榄多酚蓝莓胶原蛋白肽'>
                     </div>
                     <div class="swiper-slide">
-                        <img src="img/goods2.jpg" alt='橄榄多酚蓝莓胶原蛋白肽'>
+                        <img src="img/banner3.jpg" alt='橄榄多酚蓝莓胶原蛋白肽'>
                     </div>
                     <div class="swiper-slide">
-                        <img src="img/goods3.jpg" alt='橄榄多酚蓝莓胶原蛋白肽'>
+                        <img src="img/banner2.jpg" alt='橄榄多酚蓝莓胶原蛋白肽'>
                     </div>
-                    <div class="swiper-slide">
+                    <!-- <div class="swiper-slide">
                         <img src="img/goods4.jpg" alt='橄榄多酚蓝莓胶原蛋白肽'>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
             <!--商品价格-->
-            <div class="goods-price border-1px">
+            <div class="goods-price">
                 <div class="price-info">
                     <span class="dollar">￥</span>
                     <span class="price"></span>
@@ -58,9 +58,9 @@
             </div>
             <!--商品介绍-->
             <div class="goods-main">
-                <h2 class="goods-title">INNER-GLUTA<span class="sub1 up_icon">TM</span>橄榄蓝莓胶原低聚肽</h2>
+                <h2 class="goods-title"><span class="goods_name">INNER-GLUTA</span><span class="sub1 up_icon">TM</span>橄榄蓝莓胶原低聚肽</h2>
                 <p class="goods-presentation">
-                    INNER-GLUTA<span class="sub2 up_icon">TM</span>橄榄蓝莓胶原低聚肽源自新加坡国立大学FST项目组，是全球首款采用双重抗氧化机制研发的食品级健康产品。INNER-GLUTA<span class="sub3 up_icon">TM</span>精选欧洲橄榄果精华，配合挪威野生鳕鱼胶原蛋白肽和天然蓝莓花青素，针对每款原料的特性，科学配比、最大程度发挥橄榄多酚的健康优势。
+                    INNER-GLUTA<span class="sub2 up_icon">TM</span>橄榄蓝莓胶原低聚肽源自新加坡国立大学FST项目组，是全球首款采用双重抗氧化机制研发的食品级健康产品。INNER-GLUTA<span class="sub3 up_icon">TM</span>精选欧洲橄榄果精华，配合挪威野生鳕鱼胶原低聚肽和天然蓝莓花青素，针对每款原料的特性，科学配比、最大程度发挥橄榄多酚的健康优势。
                 </p>
             </div>
             <!--商品信息-->
@@ -108,6 +108,21 @@
                     </p>
                     <p class="goods-explain">24个月</p>
                 </li>
+                <li class="goods-introduce goods-tell">
+                    <p class="goods-info-title">
+                        <span class="dot"></span>
+                        <span class="tell">联系电话</span>
+                    </p>
+                    <p class="goods-explain">0411-84336120</p>
+                </li>
+                <li class="goods-introduce goods-code">
+                    <p class="goods-info-title">
+                        <span class="dot"></span>
+                        <span class="code">客服微信</span>
+                    </p>
+                    <p class="goods-explain">微信号：alexsonia1981</p>
+                    <img src="img/code.jpg" alt="微信二维码" style="width:8rem;height:8rem;">
+                </li>
             </ul>
         </div>
     </div>
@@ -126,10 +141,16 @@
             autoplay: 3000, //可选选项，自动滑动
             pagination: '.swiper-pagination',
         });
-
+        //判断是否为微信内置浏览器
+        var ua = navigator.userAgent.toLowerCase();
+        var isWeixin = ua.indexOf('micromessenger') != -1;
         //点击购买
         $('footer').on('touchend', function() {
-            window.location.href = 'order.html'
+            if (isWeixin) {
+                window.location.href = 'order_weixinPay.html'
+            } else {
+                window.location.href = 'order.html'
+            };
         });
 
         //判斷瀏覽器訪問的頁面
@@ -143,13 +164,13 @@
         var ts = new Date().getTime();
         var time = new Date().getTime();
         console.log(time);
-        time = 'ts=' + time + '';
+        time = 'ts=' + time;
         var pr = 'productId=1';
         var arr = [pr, time];
         arr = arr.sort();
         var stringA = arr.join('&');
         var stringSignTemp = stringA + '&key=innergluta@2018';
-        var sign = hex_md5(stringSignTemp).toUpperCase();
+        var sign = $.md5(stringSignTemp).toUpperCase();
         console.log(sign);
         getProduct(ts, sign);
         //获取商品详情
@@ -166,8 +187,13 @@
                     sign: sign
                 },
                 success: function(data) {
-                    console.log(data)
-                    $('.price-info .price').text(data.data.price);
+                    console.log(data);
+                    console.log(data.code);
+                    console.log(data.data.price);
+                    if (data.code == 200) {
+                        console.log($('.price-info .price'));
+                        $('.price-info .price').text(data.data.price);
+                    }
                 },
                 error: function() {
                     console.log('商品详情API获取失败')

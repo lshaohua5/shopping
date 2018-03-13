@@ -1,4 +1,14 @@
 $(function() {
+
+
+    // 调用微信支付接口
+    var appId = "";
+    var timeStamp = "";
+    var nonceStr = "";
+    var package = "";
+    var signType = "";
+    var paySign = "";
+
     //点击返回
     $('header').on('touchend', '.iconfont', function() {
         window.history.back();
@@ -129,14 +139,9 @@ $(function() {
             var arr1 = [address_sign, cell_sign, num_sign, name_sign, price_sign, time_sign, pr_sign];
             arr1 = arr1.sort();
             var str1 = arr1.join('&') + '&key=innergluta@2018';
-            console.log(str1);
             sign1 = $.md5(str1).toUpperCase();
-            console.log(sign1);
-            console.log('显示')
-            console.log($('footer .pay_shade'))
             $('footer .pay_shade').addClass('pay_show_shade');
             create_order(price, pr, name, cell, address, num, ts_create, sign1);
-
         }
     })
 
@@ -214,7 +219,7 @@ $(function() {
                     console.log(str_s);
                     sign_s = $.md5(str_s).toUpperCase();
                     console.log(sign_s);
-                    getUrl(orderId, ts_s, sign_s);
+                    weixinPay(orderId, ts_s, sign_s);
                 } else {
                     layer.msg('下单失败。请重新下单')
                 }
@@ -225,10 +230,11 @@ $(function() {
             }
         })
     }
-    //获取支付url
-    function getUrl(orderId, ts, sign) {
+
+    //微信支付api接口
+    function weixinPay(orderId, ts, sign) {
         $.ajax({
-            url: '/api/prepay.php',
+            url: '/api/prepay_weixin.php',
             type: 'post',
             dataType: "JSON",
             async: false,
@@ -240,15 +246,27 @@ $(function() {
             success: function(data) {
                 console.log(data);
                 var orderId = data.data.orderId;
-                var mweb_url = data.data.mweb_url;
+                var charge = data.data.charge;
+                console.log(charge);
+                console.log(charge.appId);
+                appId = charge.appId;
+                timeStamp = charge.timeStamp;
+                nonceStr = charge.nonceStr;
+                package = charge.package;
+                signType = charge.signType;
+                paySign = charge.paySign;
+                //唤起微信支付
+                // if (appId != '') {
+                //     pay();
+                // }
+                weixinConfig(appId, timeStamp, nonceStr, paySign);
+                wxPay(timeStamp, nonceStr, package, signType, paySign);
                 var pay_info = {};
                 pay_info.orderId = orderId;
-                pay_info.mweb_url = mweb_url;
+                pay_info.charge = charge;
                 payInfo = JSON.stringify(pay_info);
-                console.log(payInfo);
                 sessionStorage.removeItem('payInfo');
                 sessionStorage.setItem('payInfo', payInfo);
-                window.location.assign(mweb_url);
                 $('footer .pay_shade').removeClass('pay_show_shade').addClass('pay_hide_shade');
             },
             error: function() {
@@ -256,6 +274,105 @@ $(function() {
             }
         })
     }
+
+
+
+
+
+
+    //唤起微信支付
+    // function pay() {
+    //     if (typeof WeixinJSBridge == "undefined") {
+    //         if (document.addEventListener) {
+    //             document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    //         } else if (document.attachEvent) {
+    //             document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+    //             document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    //         }
+    //     } else {
+    //         onBridgeReady();
+    //     }
+    // }
+
+    // //开始支付
+    // function onBridgeReady() {
+    //     WeixinJSBridge.invoke(
+    //         'getBrandWCPayRequest', {
+    //             "appId": appId, //公众号名称，由商户传入
+    //             "timeStamp": timeStamp, //时间戳，自1970年以来的秒数
+    //             "nonceStr": nonceStr, //随机串
+    //             "package": package,
+    //             "signType": signType, //微信签名方式:
+    //             "paySign": paySign //微信签名
+    //         },
+    //         function(res) {
+    //             console.log("支付成功"); // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+    //             if (res.err_msg == "get_brand_wcpay_request:ok") {
+    //                 if (typeof WeixinJSBridge == "undefined") {
+    //                     if (document.addEventListener) {
+    //                         document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    //                     } else if (document.attachEvent) {
+    //                         document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+    //                         document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    //                     }
+    //                 } else {
+    //                     //支付成功
+    //                     //WeixinJSBridge.call('closeWindow');
+    //                     window.location.href = 'pay_success.html'
+    //                 }
+    //             } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
+    //                 console.log("支付过程中用户取消");
+    //                 window.location.href = 'pay_fail_weixin.html'
+    //             } else {
+    //                 //支付失败
+    //                 console.log(res.err_msg)
+    //             }
+    //         }
+    //     );
+    // }
+
+    //微信JS-SDK配置
+    function weixinConfig(appId, timestamp, nonceStr, paySign) {
+        wx.config({
+            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: appId, // 必填，企业号的唯一标识，此处填写企业号corpid
+            timestamp: timestamp, // 必填，生成签名的时间戳
+            nonceStr: nonceStr, // 必填，生成签名的随机串
+            signature: paySign, // 必填，签名，见附录1
+            jsApiList: [
+                    'chooseWXPay'
+                ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+    }
+    //调起微信支付
+    function wxPay(timestamp, nonceStr, package, signType, paySign) {
+        wx.ready(function() {
+            wx.chooseWXPay({
+                timestamp: timestamp,
+                nonceStr: nonceStr,
+                package: package,
+                signType: signType, // 注意：新版支付接口使用 MD5 加密
+                paySign: paySign,
+                success: function(res) {
+                    console.log(res);
+                    // 支付成功后的回调函数  
+                    if (res.errMsg == "chooseWXPay:ok") {
+                        //支付成功  
+                        alert('支付成功');
+                        window.location.href = 'pay_success.html'
+                    } else if (res.errMsg == "chooseWXPay:fail") {
+                        alert(res.errMsg);
+                        window.location.href = 'pay_fail_weixin.html'
+                    }
+                },
+                cancel: function(res) {
+                    //支付取消  
+                    alert('支付取消');
+                }
+            })
+        });
+    }
+
     //查询订单状态
     function orderStatus(orderId, ts, sign) {
         $.ajax({
@@ -272,7 +389,7 @@ $(function() {
                 console.log(data);
                 var orderStatu = data.data.orderStatus;
                 if (orderStatu == 0) {
-                    window.location.href = 'pay_fail.html';
+                    window.location.href = 'pay_fail_weixin.html';
                 }
                 if (orderStatu == 1) {
                     window.location.href = 'pay_success.html';
@@ -283,5 +400,4 @@ $(function() {
             }
         })
     }
-
 })

@@ -49,6 +49,8 @@ $(function() {
         verifyAddr();
     })
 
+
+
     //判断验证是否通过
     $('footer').on('touchend', function() {
         var name = $('.user-name').val();
@@ -64,12 +66,50 @@ $(function() {
         obj.pro = pro;
         obj.address = address;
         var userInfo = JSON.stringify(obj);
+        var ts = new Date().getTime();
+        console.log(ts);
+        time = 'ts=' + ts;
+        var stringSignTemp = time + '&key=innergluta@2018';
+        console.log(stringSignTemp);
+        var sign = $.md5(stringSignTemp).toUpperCase();
+        console.log(sign);
         if (verifyUser() && verifyTell() && verifyAddr()) {
-            sessionStorage.removeItem('userInfo');
-            sessionStorage.setItem('userInfo', userInfo);
-            window.location.href = 'order.html?add'
+
+            setAddress(ts, sign, userInfo);
         }
-    })
+    });
+
+    //获取商品详情
+    function setAddress(ts, sign, userInfo) {
+        $.ajax({
+            url: '/api/address.php',
+            type: 'get',
+            dataType: "JSON",
+            async: false,
+            data: {
+                device: '',
+                ts: ts,
+                sign: sign
+            },
+            success: function(data) {
+                if (data.code == 200) {
+                    sessionStorage.removeItem('userInfo');
+                    sessionStorage.setItem('userInfo', userInfo);
+                    //判断是否为微信内置浏览器
+                    var ua = navigator.userAgent.toLowerCase();
+                    var isWeixin = ua.indexOf('micromessenger') != -1;
+                    if (isWeixin) {
+                        window.location.href = 'order_weixinPay.html?add'
+                    } else {
+                        window.location.href = 'order.html?add'
+                    };
+                }
+            },
+            error: function() {
+                console.log('商品详情API获取失败')
+            }
+        })
+    }
 
     // 纯JS省市区三级联动
     var addressInit = function(_cmbProvince, _cmbCity, _cmbArea, defaultProvince, defaultCity, defaultArea) {

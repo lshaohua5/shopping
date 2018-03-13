@@ -137,34 +137,7 @@ body #main-wrapper .main .swiper-container .swiper-wrapper .swiper-slide img {
 body #main-wrapper .main .swiper-container .swiper-pagination .swiper-pagination-bullet-active {
     background: #1DAF97;
 }
-.border-1px{
-    border-bottom: 1px solid #E7E7E7;
-}
-/* 2倍素 */
-@media only screen and (-webkit-min-device-pixel-ratio : 1.5){
-    .border-1px{
-        -webkit-transform: scaleY(0.7);
-                transform: scaleY(0.7);
-    }
-}
-@media only screen and (-webkit-min-device-pixel-ratio : 2){
-    .border-1px{
-        -webkit-transform: scaleY(0.5);
-                transform: scaleY(0.5);
-    }
-}
-@media only screen and (-webkit-min-device-pixel-ratio : 3){
-    .border-1px{
-        -webkit-transform: scaleY(0.33);
-                transform: scaleY(0.33);
-    }
-}
-@media only screen and (-webkit-min-device-pixel-ratio : 4){
-    .border-1px{
-        -webkit-transform: scaleY(0.25);
-                transform: scaleY(0.25);
-    }
-}
+
 body #main-wrapper .main .goods-price {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -175,7 +148,7 @@ body #main-wrapper .main .goods-price {
     flex-flow: nowrap;
     justify-content: space-between;
     align-items: center;
-    /* border-bottom: 1px solid #E7E7E7; */
+    border-bottom: 1px solid #E7E7E7;
     background: #fff;
     font-size: 0;
 }
@@ -207,11 +180,11 @@ body #main-wrapper .main .goods-price .price-info .discount {
     display: inline-block;
     width: 2.64rem;
     height: .85rem;
-    background: url("../img/discount .png") no-repeat;
+    background: url("../img/discount.png") no-repeat;
     background-size: 100% 100%;
     margin-left: 0.43rem;
     position: absolute;
-    top: 0.6rem;
+    top: 0.4rem;
 }
 
 body #main-wrapper .main .goods-price .express {
@@ -256,6 +229,10 @@ body #main-wrapper .main .goods-main .goods-title {
     color: #1DAF97;
 }
 
+body #main-wrapper .main .goods-main .goods-title .goods_name {
+    font-weight: 700
+}
+
 body #main-wrapper .main .goods-main .goods-presentation {
     font-family: PingFangHK-Regular, sans-serif;
     font-size: 0.6rem;
@@ -269,7 +246,7 @@ body #main-wrapper .main .goods {
     background: #fff;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding: 0 0.51rem;
+    padding: 0 0.51rem 3rem;
 }
 
 body #main-wrapper .main .goods .goods-introduce {

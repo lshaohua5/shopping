@@ -61,7 +61,7 @@
             payInfo = JSON.parse(payInfo);
             console.log(payInfo);
             var orderId = payInfo.orderId;
-            var mweb_url = payInfo.mweb_url;
+            var charge = payInfo.charge;
             console.log(orderId);
             //点击继续支付
             $('#main').on('touchend', '.continue', function() {
@@ -101,7 +101,7 @@
                         sign_s = $.md5(str_s).toUpperCase();
                         console.log(sign_s);
                         if (orderStatus == 0) {
-                            getUrl(orderId, ts_s, sign_s);
+                            weixinPay(orderId, ts_s, sign_s);
                         } else {
                             window.location.href = 'pay_success.html';
                         }
@@ -111,10 +111,11 @@
                     }
                 })
             }
-            //获取支付url
-            function getUrl(orderId, ts, sign) {
+
+            //微信支付api接口
+            function weixinPay(orderId, ts, sign) {
                 $.ajax({
-                    url: '/api/prepay.php',
+                    url: '/api/prepay_weixin.php',
                     type: 'post',
                     dataType: "JSON",
                     async: false,
@@ -124,11 +125,20 @@
                         sign: sign
                     },
                     success: function(data) {
+                        console.log(data);
                         var orderId = data.data.orderId;
-                        var mweb_url = data.data.mweb_url;
-                        sessionStorage.removeItem('payUrl');
-                        sessionStorage.setItem('payUrl', mweb_url);
-                        window.location.assign(mweb_url);
+                        var charge = data.data.charge;
+                        charge = JSON.parse(charge);
+                        alert(orderId);
+                        alert(charge);
+                        var pay_info = {};
+                        pay_info.orderId = orderId;
+                        pay_info.charge = charge;
+                        payInfo = JSON.stringify(pay_info);
+                        console.log(payInfo);
+                        sessionStorage.removeItem('payInfo');
+                        sessionStorage.setItem('payInfo', payInfo);
+                        $('footer .pay_shade').removeClass('pay_show_shade').addClass('pay_hide_shade');
                     },
                     error: function() {
                         console.log('下单api获取失败')

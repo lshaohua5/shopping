@@ -241,10 +241,18 @@ body #main .select .selectList .cmbArea-icon {
 }
 
 body #main .info {
-    flex: 1;
+    height: 4rem;
     font-family: PingFangHK-Regular, sans-serif;
     font-size: 0.6rem;
     color: #666666;
+    padding: 0.43rem 0.51rem;
+}
+
+body #main .remind {
+    flex: 1;
+    font-family: PingFangHK-Regular, sans-serif;
+    font-size: 0.6rem;
+    color: #ec6363;
     padding: 0.43rem 0.51rem;
 }
 
@@ -257,6 +265,4 @@ body footer {
     color: #FFFFFF;
     text-align: center;
     line-height: 2.13rem;
-    position: absolute;
-    bottom: 0;
 }

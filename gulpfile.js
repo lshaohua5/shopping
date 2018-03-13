@@ -66,7 +66,7 @@ gulp.task("img", function () {
 /*监听*/
 
 gulp.task("watch", function () {
-    gulp.watch("*.html", ["copy-index",'less'])
+    gulp.watch("*.html", ["copy-index"])
     gulp.watch("src/css/*.less", ["copy-index"])
     gulp.watch(entryjs, ["copy-index"])
     gulp.watch("src/img/*.*", ["copy-index"])

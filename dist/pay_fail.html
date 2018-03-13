@@ -13,6 +13,7 @@
     <script src="lib/rem/rem.js" type="text/javascript" charset="utf-8"></script>
     <script src="lib/layer/layer.js"></script>
     <script src="lib/layui/layui.js"></script>
+    <script src="lib/MD5/md5.js" type="text/javascript" charset="utf-8"></script>
     <script src="lib/layui/layui.all.js"></script>
     <title></title>
 </head>
@@ -52,20 +53,30 @@
 
             //放弃支付
             $('.pay_type').on('touchend', '.abandon', function() {
-                window.location.href = 'index.html'
+                window.location.href = 'index.php'
             })
 
             //获取订单id和支付url
             var payInfo = sessionStorage.getItem('payInfo');
             payInfo = JSON.parse(payInfo);
+            console.log(payInfo);
             var orderId = payInfo.orderId;
             var mweb_url = payInfo.mweb_url;
+            console.log(orderId);
             //点击继续支付
             $('#main').on('touchend', '.continue', function() {
-                orderStatus(orderId)
+                var ts_status = new Date().getTime();
+                console.log(ts_status);
+                var time_status = 'ts=' + ts_status;
+                var orderId_status = 'orderId=' + orderId;
+                var arr_status = [orderId_status, time_status];
+                arr_status = arr_status.sort();
+                var str_status = arr_status.join('&') + '&key=innergluta@2018';
+                sign_status = $.md5(str_status).toUpperCase();
+                orderStatus(orderId, ts_status, sign_status);
             });
             //查询订单状态
-            function orderStatus(orderId) {
+            function orderStatus(orderId, ts, sign) {
                 $.ajax({
                     url: '/api/query_order.php',
                     type: 'get',
@@ -73,13 +84,24 @@
                     dataType: "JSON",
                     data: {
                         orderId: orderId,
-                        sign: ''
+                        ts: ts,
+                        sign: sign
                     },
                     success: function(data) {
                         var orderId = data.data.orderId;
                         var orderStatus = data.data.orderStatus;
+                        var orderId_s = 'orderId=' + orderId;
+                        var ts_s = new Date().getTime();
+                        console.log(ts_s);
+                        var time_s = 'ts=' + ts_s;
+                        var arr_s = [orderId_s, time_s];
+                        arr_s = arr_s.sort();
+                        var str_s = arr_s.join('&') + '&key=innergluta@2018';
+                        console.log(str_s);
+                        sign_s = $.md5(str_s).toUpperCase();
+                        console.log(sign_s);
                         if (orderStatus == 0) {
-                            getUrl(orderId);
+                            getUrl(orderId, ts_s, sign_s);
                         } else {
                             window.location.href = 'pay_success.html';
                         }
@@ -90,14 +112,16 @@
                 })
             }
             //获取支付url
-            function getUrl(orderId) {
+            function getUrl(orderId, ts, sign) {
                 $.ajax({
                     url: '/api/prepay.php',
                     type: 'post',
                     dataType: "JSON",
                     async: false,
                     data: {
-                        orderId: orderId
+                        orderId: orderId,
+                        ts: ts,
+                        sign: sign
                     },
                     success: function(data) {
                         var orderId = data.data.orderId;

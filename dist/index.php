@@ -1,0 +1,123 @@
+<?php
+require_once "../common/include.php";
+addlog('index');
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="max-age=7200" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="lib/rem/rem.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script src="lib/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <title></title>
+</head>
+
+<body>
+    <!--头部-->
+    <div id="main-wrapper">
+        <div class="main">
+            <header>
+                橄榄多酚是什么？为何其在欧洲食品安全局EFSA有这么多健康认证？
+            </header>
+            <!--商品详情-->
+            <div class="author">
+                <div class="au">
+                    <img class="logo" src="img/logo.jpg" alt="">
+                    <div class="author_info">
+                        <img src="img/INNER-GLUTA.png" alt="">
+                        <p class="release_time">12月23日</p>
+                    </div>
+                </div>
+                <img class="author_img" src="img/qucode.png" alt="">
+            </div>
+            <div class="goods_info">
+                橄榄多酚，天然存在于“生命之树”橄榄树的果实中，是橄榄中多酚成分的统称。大量临床数据表明，橄榄多酚可以对抗多种衰老相关健康问题，如皮肤老化、关节炎、动脉粥样硬化、神经衰退性疾病等。橄榄多酚在<span class="font_color">欧洲食品安全局</span>EFSA获得的健康宣称包括抗炎、维护正常血压、预防动脉硬化、促进上呼吸道健康、维护肠道正常功能等。在<span class="font_color">美国食品药品监督管理局FDA</span>获得的健康宣称包括防止低密度脂蛋白被氧化损伤、消除自由基等，是天然存在的最强营养素。
+            </div>
+            <img class="introduce" src="img/introduce.jpg" alt="">
+            <div class="goods">
+                <div class="goods_li">
+                    <h2>一、超强抗氧化</h2>
+                    <img src="img/oxidation.jpg" alt="">
+                    <p class="goods_li_main">
+                        橄榄多酚具有<span class="font_color">超强的自由基淬灭能力</span>，可以保护细胞和DNA免受活性氧自由基的攻击，防止退行性疾病如动脉粥样硬化、糖尿病、神经性疾病的发生。降低衰老相关蛋白SirTs、 FoxOs、PBEF的表达，具有
+                        <span class="font_color">防止衰老、延长寿命</span>的能力。</p>
+                </div>
+                <div class="goods_li">
+                    <h2>二、修复晒后肌肤</h2>
+                    <img src="img/effect1.jpg" alt="">
+                    <p class="goods_li_main">
+                        紫外线辐射会加速皮肤细胞中自由基的产生，而大量的自由基聚集在表皮细胞中会造成红斑、过敏等皮肤问题。橄榄多酚可以<span class="font_color">修复晒后皮肤</span>，防止形成紫外线导致的光老化皱纹，改善皮肤变薄和缺水的现象。</p>
+                </div>
+                <div class="goods_li">
+                    <h2>三、促进心脑血管健康</h2>
+                    <img src="img/effect2.jpg" alt="">
+                    <p class="goods_li_main">
+                        橄榄多酚可以防止低密度脂蛋白（LDL）的过氧化，降低人体胆固醇的水平，<span class="font_color">防止动脉粥样硬化斑块的形成</span>，并且能够减小血栓的尺寸，促进心脑血管的健康。</p>
+                </div>
+                <div class="goods_li">
+                    <h2>四、抗高血糖并改善胰岛细胞敏感性</h2>
+                    <img src="img/effect3.jpg" alt="">
+                    <p class="goods_li_main">
+                        临床数据表明，橄榄多酚抗高血糖的能力与其超强的抗氧化能力密切相关。饮食中补充橄榄多酚可以<span class="font_color">改善血糖</span>、血脂和总胆固醇的水平，同时降低尿酸和丙二醛的生成。在Martin等的实验中，受试者每天补充橄榄多酚增加了15%的<span class="font_color">胰岛素敏感性</span>和28%的β细胞<span class="font_color">分泌胰岛素的能力</span>。</p>
+                </div>
+                <div class="goods_li">
+                    <h2>五、抗炎</h2>
+                    <img src="img/effect4.jpg" alt="">
+                    <p class="goods_li_main">
+                        橄榄多酚的抗炎功效主要来源于其可以<span class="font_color">抑制促炎性细胞因子的生成</span>，如肿瘤坏死因子TNF-α、IL-1β等。通过调节NF-κB pathway, 橄榄多酚可以抑制慢性炎症的发生，有效预防和辅助治疗阿兹海默症和关节炎症。</p>
+                </div>
+                <div class="goods_li">
+                    <h2>六、抗癌</h2>
+                    <img src="img/effect5.jpg" alt="">
+                    <p class="goods_li_main">
+                        橄榄多酚可以直接<span class="font_color">抑制肿瘤细胞</span>的生长，不可逆的环绕在癌细胞周围防止他们复制、迁移和扩散而不影响正常细胞的功能。Sepporta （2014）等指出橄榄苦苷可以抑制人乳腺癌细胞MCF-7的生长和扩散并诱导其凋亡。</p>
+                </div>
+                <div class="goods_li">
+                    <h2>七、保护肝脏</h2>
+                    <img class="effect6" src="img/effect6.jpg" alt="">
+                    <p class="goods_li_main">
+                        橄榄多酚可以消除脂肪肝中脂质的堆积，防止非酒精性脂肪性肝炎的发生。其有益肝脏健康的作用原理在于橄榄多酚可以<span class="font_color">减量调节肝脏脂肪</span>的生成并且活化上调内脏脂肪的消耗。</p>
+                </div>
+                <div class="goods_li">
+                    <h2>八、保护神经系统</h2>
+                    <img src="img/effect7.jpg" alt="">
+                    <p class="goods_li_main">
+                        阿兹海默症和帕金森氏症等神经系统疾病与氧化损伤导致的神经元损失密切相关。橄榄多酚可以<span class="font_color">保护神经元</span>免受破坏和损失并且绑定β淀粉样肽(阿兹海默症患者脑中的毒肽)形成非共价结构，从而抑制淀粉状蛋白斑的形成，保护神经系统。</p>
+                </div>
+                <div class="goods_li">
+                    <h2>九、促进上呼吸道和肠道健康</h2>
+                    <img src="img/effect8.jpg" alt="">
+                    <p class="goods_li_main">
+                        橄榄多酚是<span class="font_color">天然的抑菌剂</span>，特别是橄榄苦苷、羟基酪醇和酪醇可以抑制包括流感杆菌、粘膜炎莫拉氏菌、幽门螺旋杆菌、埃希氏大肠杆菌等在内的多种呼吸道、肠道致病菌，促进上呼吸道和肠道健康。</p>
+                </div>
+            </div>
+            <img class="er_code" src="img/effect9.png" alt="">
+            <p class="attention">敬请关注公众号</p>
+        </div>
+    </div>
+    <!--购买-->
+    <footer>相关产品</footer>
+</body>
+<script>
+    $(function() {
+        //点击相关产品 页面跳转
+        $('footer').on('touchend', function() {
+            window.location.href = 'detail.html'
+        })
+
+        //判斷瀏覽器訪問的頁面
+        if (sessionStorage.getItem('payInfo')) {
+            sessionStorage.removeItem('payInfo')
+        }
+        //判斷瀏覽器訪問的頁面
+        if (sessionStorage.getItem('userInfo')) {
+            sessionStorage.removeItem('userInfo')
+        }
+    })
+</script>
+
+</html>

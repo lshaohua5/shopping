@@ -87,12 +87,10 @@ body #main-wrapper {
     -webkit-box-sizing: border-box;
     padding: 0.43rem 0.54rem;
     margin-bottom: 2.13rem;
-    -webkit-overflow-scrolling: touch;
 }
 
 body #main-wrapper .main {
     width: 100%;
-    -webkit-overflow-scrolling: touch;
 }
 
 body #main-wrapper .main header {
@@ -119,6 +117,7 @@ body #main-wrapper .main .author .au .logo {
     width: 1.19rem;
     height: 1.19rem;
     margin-right: 0.43rem;
+    border-radius: 50%;
 }
 
 body #main-wrapper .main .author .au .author_info img {
